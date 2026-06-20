@@ -3,20 +3,19 @@
 import Link from "next/link";
 import { useState } from "react";
 import {
-  CarFront,
-  Menu,
-  X,
-  UserCircle,
-  Home,
-  CalendarDays,
-  PlusCircle,
-  LogOut,
-  Car,
-  LogIn,
-  UserPlus,
-} from "lucide-react";
+  FaBars,
+  FaTimes,
+  FaUserCircle,
+  FaHome,
+  FaCar,
+  FaCalendarCheck,
+  FaPlusCircle,
+  FaSignOutAlt,
+  FaSignInAlt,
+} from "react-icons/fa"
 import { Button } from "@heroui/react";
 import Image from "next/image";
+import { LuCarFront } from "react-icons/lu";
 
 const Navbar = () => {
   // Replace with your auth state
@@ -37,7 +36,7 @@ const Navbar = () => {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <div className="rounded-xl bg-blue-600 p-2 text-white">
-            <CarFront size={22} />
+            <LuCarFront size={24} />
           </div>
 
           <h2 className="text-2xl font-bold">
@@ -51,7 +50,7 @@ const Navbar = () => {
             href="/"
             className="flex items-center gap-1 font-medium hover:text-blue-600"
           >
-            <Home size={18} />
+            <FaHome size={16} />
             Home
           </Link>
 
@@ -68,7 +67,7 @@ const Navbar = () => {
                 href="/add-car"
                 className="flex items-center gap-1 font-medium hover:text-blue-600"
               >
-                <PlusCircle size={18} />
+                <FaPlusCircle size={16} />
                 Add Car
               </Link>
 
@@ -76,7 +75,7 @@ const Navbar = () => {
                 href="/my-bookings"
                 className="flex items-center gap-1 font-medium hover:text-blue-600"
               >
-                <CalendarDays size={18} />
+                <FaCalendarCheck size={16} />
                 My Bookings
               </Link>
             </>
@@ -91,7 +90,7 @@ const Navbar = () => {
                 href="/login"
                 className="flex items-center gap-2 font-medium hover:text-blue-600"
               >
-                <LogIn size={18} />
+                <FaSignInAlt size={16} />
                 Login
               </Link>
 
@@ -115,7 +114,7 @@ const Navbar = () => {
                     className="h-10 w-10 rounded-full object-cover"
                   />
                 ) : (
-                  <UserCircle
+                  <FaUserCircle
                     size={40}
                     className="text-blue-600"
                   />
@@ -138,7 +137,7 @@ const Navbar = () => {
                       href="/add-car"
                       className="flex items-center gap-2 rounded-lg px-4 py-3 hover:bg-gray-100"
                     >
-                      <PlusCircle size={18} />
+                      <FaPlusCircle size={16} />
                       Add Car
                     </Link>
 
@@ -146,7 +145,7 @@ const Navbar = () => {
                       href="/my-bookings"
                       className="flex items-center gap-2 rounded-lg px-4 py-3 hover:bg-gray-100"
                     >
-                      <CalendarDays size={18} />
+                      <FaCalendarCheck size={16} />
                       My Bookings
                     </Link>
 
@@ -154,12 +153,12 @@ const Navbar = () => {
                       href="/my-added-cars"
                       className="flex items-center gap-2 rounded-lg px-4 py-3 hover:bg-gray-100"
                     >
-                      <Car size={18} />
+                      <FaCar size={16} />
                       My Added Cars
                     </Link>
 
                     <Button className="flex w-full items-center gap-2 rounded-lg px-4 py-3 text-red-500 hover:bg-red-50">
-                      <LogOut size={18} />
+                      <FaSignOutAlt size={16} />
                       Logout
                     </Button>
                   </div>
@@ -174,7 +173,7 @@ const Navbar = () => {
           className="lg:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
         >
-          {mobileOpen ? <X /> : <Menu />}
+          {mobileOpen ? <FaTimes size={22} /> : <FaBars size={22} />}
         </Button>
       </div>
 
@@ -186,7 +185,7 @@ const Navbar = () => {
               Home
             </Link>
 
-            <Link href="/cars" className="block py-2">
+            <Link href="/explore-cars" className="block py-2">
               Explore Cars
             </Link>
 
