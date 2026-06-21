@@ -55,7 +55,7 @@ const Navbar = () => {
           </Link>
 
           <Link
-            href="/cars"
+            href="/explore-cars"
             className="font-medium hover:text-blue-600"
           >
             Explore Cars

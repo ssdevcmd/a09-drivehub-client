@@ -47,6 +47,7 @@ const Banner = () => {
             alt="DriveHub Car"
             width={600}
             height={400}
+            loading="eager"
             className="w-full h-full object-cover"
           />
           </div>

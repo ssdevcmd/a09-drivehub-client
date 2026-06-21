@@ -20,7 +20,6 @@ const AddCarPage = () => {
 
         const data = await res.json()
 
-        console.log(data);
     }
 
     
@@ -146,8 +145,8 @@ const AddCarPage = () => {
                         </div>
 
                         {/* Location */}
-                        <TextField name="location" isRequired>
-                            <Label>Location</Label>
+                        <TextField name="pickup location" isRequired>
+                            <Label>Pickup Location</Label>
                             <Input
                                 placeholder="Dhaka, Bangladesh"
                                 className="rounded-2xl"
