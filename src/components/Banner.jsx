@@ -45,8 +45,8 @@ const Banner = () => {
           <Image
             src="/assets/Banner6.jpg"
             alt="DriveHub Car"
-            width={900}
-            height={700}
+            width={600}
+            height={400}
             className="w-full h-full object-cover"
           />
           </div>
