@@ -1,9 +1,11 @@
 import { Button } from "@heroui/react";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const CarCard = ({ car }) => {
     const {
+        _id,
         carModel,
         brand,
         carType,
@@ -63,7 +65,11 @@ const CarCard = ({ car }) => {
                         <span className="text-sm text-gray-500">/ day</span>
                     </div>
 
-                    <Button className="rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white transition hover:bg-blue-700">View Details</Button>
+                    <Link href={`/explore-cars/${_id}`}>
+                    <Button className="rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white transition hover:bg-blue-700">
+                    View Details
+                    </Button>
+                    </Link>
                 </div>
             </div>
         </div>
