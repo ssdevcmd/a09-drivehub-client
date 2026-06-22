@@ -1,3 +1,4 @@
+import DeleteAlert from "@/components/DeleteAlert";
 import EditModal from "@/components/EditModal";
 import { Button } from "@heroui/react";
 import Image from "next/image";
@@ -17,7 +18,7 @@ const CarDetailsPage = async ({ params }) => {
             <div className="grid gap-10 lg:grid-cols-2">
                 {/* <EditModal car={car}></EditModal> */}
                 {/* Image */}
-                <div className="overflow-hidden rounded-3xl shadow-xl">
+                {/* <div className="overflow-hidden rounded-3xl shadow-xl"> */}
                     <Image
                         src={car.image}
                         alt={car.carModel || "Car Image"}
@@ -25,11 +26,12 @@ const CarDetailsPage = async ({ params }) => {
                         height={500}
                         className="h-full w-full object-cover"
                     />
-                </div>
+                {/* </div> */}
 
                 <div>
-                    <div className="flex justify-end">
+                    <div className="flex items-center gap-3 justify-end mt-5 mb-3">
                         <EditModal car={car} />
+                        <DeleteAlert car={car}/>
                         </div>
                     </div>
 

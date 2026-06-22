@@ -10,6 +10,7 @@ import {
   TextArea,
   TextField,
 } from "@heroui/react";
+import { FaRegEdit } from "react-icons/fa";
 
 const EditModal = ({ car }) => {
   const {
@@ -50,7 +51,7 @@ const EditModal = ({ car }) => {
       <Button
         variant="outline"
         className="rounded-xl border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white"
-      >
+      ><FaRegEdit />
         Edit
       </Button>
 
