@@ -111,12 +111,13 @@ const Navbar = () => {
           ) : (
             <div className="relative">
 
-              <button
+              <Button
                 onClick={() => setProfileOpen(!profileOpen)}
                 className="flex items-center gap-3"
               >
                 {user.image ? (
                   <Image
+                    referrerPolicy="no-referrer"
                     src={user?.image}
                     alt={user?.name || "User"}
                     width={40}
@@ -129,13 +130,12 @@ const Navbar = () => {
                     className="text-blue-600"
                   />
                 )}
-              </button>
-
+              </Button>
               {profileOpen && (
                 <div className="absolute right-0 mt-4 w-64 rounded-2xl border bg-white shadow-xl">
 
                   <div className="border-b p-4">
-                    <h3 className="font-semibold">
+                    <h3 className="font-semibold text-orange-400">
                       {user.name}
                     </h3>
 
@@ -170,14 +170,13 @@ const Navbar = () => {
                       My Added Cars
                     </Link>
 
-                    <button
+                    <Button
                       onClick={handleLogout}
                       className="flex w-full items-center gap-2 rounded-lg px-4 py-3 text-red-600 hover:bg-red-50"
                     >
                       <FaSignOutAlt />
                       Logout
-                    </button>
-
+                    </Button>
                   </div>
                 </div>
               )}
@@ -187,7 +186,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu Button */}
-        <button
+        <Button
           className="lg:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
         >
@@ -196,7 +195,7 @@ const Navbar = () => {
           ) : (
             <FaBars size={24} />
           )}
-        </button>
+        </Button>
 
       </div>
 

@@ -1,9 +1,10 @@
 "use client";
 
 import { authClient } from "@/lib/auth-client";
-import { Button, Description, FieldError, Form, Input, Label, TextField, toast } from "@heroui/react";
+import { Button, Description, FieldError, Form, Input, Label, Separator, TextField, toast } from "@heroui/react";
 import { Card } from '@heroui/react';
 import { redirect } from "next/navigation";
+import { FcGoogle } from "react-icons/fc";
 
 
 const RegisterPage = () => {
@@ -13,30 +14,37 @@ const RegisterPage = () => {
 
         const formData = new FormData(e.currentTarget)
         const user = Object.fromEntries(formData.entries());
-        const {data, error} = await authClient.signUp.email({
+        const { data, error } = await authClient.signUp.email({
             email: user.email,
             password: user.password,
             name: user.name,
             image: user.image
         })
 
-        if(data) {
+        if (data) {
             redirect('/login');
         }
 
-        if(error) {
+        if (error) {
             alert('Error')
         }
         // console.log(user);
         // console.log({data, error});
     }
+
+    const handleGoogleSignIn = async () => {
+        await authClient.signIn.social({
+            provider: 'google'
+        })
+    }
+
     return (
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto my-8">
             <div className="text-center">
-                <h1 className="text-2xl font-bold">Create Account</h1>
-                <p>Find your perfect car with DriveHub</p>
+                <h1 className="text-2xl font-bold mb-2">Create Account</h1>
+                <p className="font-semibold mb-2">Find your perfect car with DriveHub</p>
             </div>
-            <Card className="border rounded-none">
+            <Card className="border">
                 <Form className="flex w-96 flex-col gap-4" onSubmit={onSubmit}>
 
                     {/* name */}
@@ -73,7 +81,7 @@ const RegisterPage = () => {
                         }}
                     >
                         <Label>Email</Label>
-                        <Input placeholder="john@example.com" />
+                        <Input placeholder="Enter a valid email address" />
                         <FieldError />
                     </TextField>
 
@@ -104,11 +112,24 @@ const RegisterPage = () => {
                     <div className="flex justify-center gap-2">
                         <Button
                             type="submit"
-                            className="w-full">
+                            className="w-full rounded-xl bg-blue-500 font-semibold text-white hover:bg-blue-700">
                             Register
                         </Button>
                     </div>
                 </Form>
+                <div className='flex justify-center items-center gap-3'>
+                    <Separator></Separator>
+                    <div className='whitespace-nowrap'>Or sign up with</div>
+                    <Separator></Separator>
+                </div>
+                <div>
+                    <Button
+                        onClick={handleGoogleSignIn}
+                        variant='outline'
+                        className='w-full rounded-xl bg-cyan-500 font-semibold text-white hover:bg-cyan-700'>
+                        <FcGoogle /> Sign in with Google
+                    </Button>
+                </div>
             </Card>
         </div>
     );
