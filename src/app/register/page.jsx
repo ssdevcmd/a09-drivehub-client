@@ -44,7 +44,7 @@ const RegisterPage = () => {
                 <h1 className="text-2xl font-bold mb-2">Create Account</h1>
                 <p className="font-semibold mb-2">Find your perfect car with DriveHub</p>
             </div>
-            <Card className="border">
+            <Card>
                 <Form className="flex w-96 flex-col gap-4" onSubmit={onSubmit}>
 
                     {/* name */}

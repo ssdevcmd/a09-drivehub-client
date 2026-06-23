@@ -1,15 +1,7 @@
 "use client";
 
 import React from "react";
-import {
-  Button,
-  FieldError,
-  Input,
-  Label,
-  Modal,
-  TextArea,
-  TextField,
-} from "@heroui/react";
+import { Button, FieldError, Input, Label, Modal, TextArea, TextField } from "@heroui/react";
 import { FaRegEdit } from "react-icons/fa";
 
 const EditModal = ({ car }) => {

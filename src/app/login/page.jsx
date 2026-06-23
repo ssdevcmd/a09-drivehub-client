@@ -44,7 +44,7 @@ const LoginPage = () => {
         <h1 className='text-2xl font-bold mb-2'>Login</h1>
         <p className='font-semibold mb-2'>Start your ride with DriveHub</p>
       </div>
-      <Card className='border'>
+      <Card>
         <Form onSubmit={onSubmit} className="flex w-96 flex-col gap-4">
 
           {/* email */}
@@ -106,7 +106,7 @@ const LoginPage = () => {
             onClick={handleGoogleSignIn}
             variant='outline'
             className='w-full rounded-xl bg-cyan-500 font-semibold text-white hover:bg-cyan-700'>
-            <FcGoogle /> Sign in with Google
+            <FcGoogle /> Login in with Google
           </Button>
         </div>
       </Card>

@@ -6,17 +6,7 @@ import { useState } from "react";
 import { authClient } from "@/lib/auth-client";
 import { Button } from "@heroui/react";
 import { LuCarFront } from "react-icons/lu";
-import {
-  FaBars,
-  FaTimes,
-  FaHome,
-  FaCar,
-  FaPlusCircle,
-  FaCalendarCheck,
-  FaUserCircle,
-  FaSignOutAlt,
-  FaSignInAlt,
-} from "react-icons/fa";
+import { FaBars, FaTimes, FaHome, FaCar, FaPlusCircle, FaCalendarCheck, FaUserCircle, FaSignOutAlt, FaSignInAlt } from "react-icons/fa";
 
 const Navbar = () => {
   const { data: session } = authClient.useSession();
@@ -71,21 +61,6 @@ const Navbar = () => {
             Add Car
           </Link>
 
-          {/* <Link
-            href="/my-bookings"
-            className="flex items-center gap-2 hover:text-blue-600 transition"
-          >
-            <FaCalendarCheck />
-            My Bookings
-          </Link> */}
-
-          {/* <Link
-            href="/my-added-cars"
-            className="flex items-center gap-2 hover:text-blue-600 transition"
-          >
-            <FaCar />
-            My Added Cars
-          </Link> */}
         </nav>
 
         {/* Right Side */}
@@ -112,12 +87,14 @@ const Navbar = () => {
             <div className="relative">
 
               <Button
+                isIconOnly
                 onClick={() => setProfileOpen(!profileOpen)}
                 className="flex items-center gap-3"
               >
                 {user.image ? (
                   <Image
                     referrerPolicy="no-referrer"
+                    loading="eager"
                     src={user?.image}
                     alt={user?.name || "User"}
                     width={40}
@@ -171,6 +148,7 @@ const Navbar = () => {
                     </Link>
 
                     <Button
+                      variant="light"
                       onClick={handleLogout}
                       className="flex w-full items-center gap-2 rounded-lg px-4 py-3 text-red-600 hover:bg-red-50"
                     >

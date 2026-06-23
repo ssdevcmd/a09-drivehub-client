@@ -4,18 +4,7 @@ import Link from "next/link";
 import React from "react";
 
 const CarCard = ({ car }) => {
-    const {
-        _id,
-        carModel,
-        brand,
-        carType,
-        dailyRentalPrice,
-        image,
-        location,
-        fuelType,
-        seats,
-        availability
-    } = car;
+    const { _id, carModel, brand, carType, dailyRentalPrice, image, location, fuelType, seats, availability } = car;
 
     return (
         <div className="overflow-hidden rounded-3xl border bg-white shadow-md transition hover:shadow-xl">

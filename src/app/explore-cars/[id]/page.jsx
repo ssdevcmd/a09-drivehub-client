@@ -2,14 +2,7 @@ import DeleteAlert from "@/components/DeleteAlert";
 import EditModal from "@/components/EditModal";
 import { Button } from "@heroui/react";
 import Image from "next/image";
-import {
-  FaCar,
-  FaGasPump,
-  FaMapMarkerAlt,
-  FaUsers,
-  FaCheckCircle,
-  FaStar,
-} from "react-icons/fa";
+import { FaCar, FaGasPump, FaMapMarkerAlt, FaUsers, FaCheckCircle, FaStar } from "react-icons/fa";
 
 const CarDetailsPage = async ({ params }) => {
   const { id } = await params;
