@@ -1,117 +1,127 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
+import { authClient } from "@/lib/auth-client";
+import { Button } from "@heroui/react";
+import { LuCarFront } from "react-icons/lu";
 import {
   FaBars,
   FaTimes,
-  FaUserCircle,
   FaHome,
   FaCar,
-  FaCalendarCheck,
   FaPlusCircle,
+  FaCalendarCheck,
+  FaUserCircle,
   FaSignOutAlt,
   FaSignInAlt,
-} from "react-icons/fa"
-import { Button } from "@heroui/react";
-import Image from "next/image";
-import { LuCarFront } from "react-icons/lu";
+} from "react-icons/fa";
 
 const Navbar = () => {
-  // Replace with your auth state
-  const user = {
-    name: "John Doe",
-    email: "john@example.com",
-    image: "",
-  };
-
-  // const user = null;
+  const { data: session } = authClient.useSession();
+  const user = session?.user;
 
   const [mobileOpen, setMobileOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
 
+  const handleLogout = async () => {
+    await authClient.signOut();
+    setProfileOpen(false);
+  };
+
   return (
-    <header className="sticky top-0 z-50 border-b bg-white/80 backdrop-blur-lg">
+    <div className="sticky top-0 z-50 border-b bg-white/80 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
+
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <div className="rounded-xl bg-blue-600 p-2 text-white">
             <LuCarFront size={24} />
           </div>
 
-          <h2 className="text-2xl font-bold">
+          <h1 className="text-2xl font-bold">
             Drive<span className="text-blue-600">Hub</span>
-          </h2>
+          </h1>
         </Link>
 
-        {/* Desktop Menu */}
+        {/* Desktop Navigation */}
         <nav className="hidden items-center gap-8 lg:flex">
+
           <Link
             href="/"
-            className="flex items-center gap-1 font-medium hover:text-blue-600"
+            className="flex items-center gap-2 hover:text-blue-600 transition"
           >
-            <FaHome size={16} />
+            <FaHome />
             Home
           </Link>
 
           <Link
             href="/explore-cars"
-            className="font-medium hover:text-blue-600"
+            className="hover:text-blue-600 transition"
           >
             Explore Cars
           </Link>
 
-          {user && (
-            <>
-              <Link
-                href="/add-car"
-                className="flex items-center gap-1 font-medium hover:text-blue-600"
-              >
-                <FaPlusCircle size={16} />
-                Add Car
-              </Link>
+          <Link
+            href="/add-car"
+            className="flex items-center gap-2 hover:text-blue-600 transition"
+          >
+            <FaPlusCircle />
+            Add Car
+          </Link>
 
-              <Link
-                href="/my-bookings"
-                className="flex items-center gap-1 font-medium hover:text-blue-600"
-              >
-                <FaCalendarCheck size={16} />
-                My Bookings
-              </Link>
-            </>
-          )}
+          {/* <Link
+            href="/my-bookings"
+            className="flex items-center gap-2 hover:text-blue-600 transition"
+          >
+            <FaCalendarCheck />
+            My Bookings
+          </Link> */}
+
+          {/* <Link
+            href="/my-added-cars"
+            className="flex items-center gap-2 hover:text-blue-600 transition"
+          >
+            <FaCar />
+            My Added Cars
+          </Link> */}
         </nav>
 
         {/* Right Side */}
-        <div className="hidden items-center gap-4 lg:flex">
+        <div className="hidden lg:flex items-center gap-4">
+
           {!user ? (
             <>
               <Link
                 href="/login"
-                className="flex items-center gap-2 font-medium hover:text-blue-600"
+                className="flex items-center gap-2 hover:text-blue-600"
               >
-                <FaSignInAlt size={16} />
+                <FaSignInAlt />
                 Login
               </Link>
 
               <Link
                 href="/register"
-                className="rounded-xl bg-blue-600 px-5 py-2 font-semibold text-white hover:bg-blue-700"
+                className="rounded-xl bg-blue-600 px-5 py-2 text-white hover:bg-blue-700 transition"
               >
                 Register
               </Link>
             </>
           ) : (
             <div className="relative">
-              <Button
+
+              <button
                 onClick={() => setProfileOpen(!profileOpen)}
-                className="flex items-center gap-3 rounded-full"
+                className="flex items-center gap-3"
               >
                 {user.image ? (
                   <Image
-                    src={user.image}
-                    alt=""
-                    className="h-10 w-10 rounded-full object-cover"
+                    src={user?.image}
+                    alt={user?.name || "User"}
+                    width={40}
+                    height={40}
+                    className="rounded-full object-cover border-2 border-blue-500"
                   />
                 ) : (
                   <FaUserCircle
@@ -119,25 +129,28 @@ const Navbar = () => {
                     className="text-blue-600"
                   />
                 )}
-              </Button>
+              </button>
 
               {profileOpen && (
-                <div className="absolute right-0 mt-3 w-64 rounded-2xl border bg-white shadow-xl">
+                <div className="absolute right-0 mt-4 w-64 rounded-2xl border bg-white shadow-xl">
+
                   <div className="border-b p-4">
                     <h3 className="font-semibold">
                       {user.name}
                     </h3>
+
                     <p className="text-sm text-gray-500">
                       {user.email}
                     </p>
                   </div>
 
                   <div className="p-2">
+
                     <Link
                       href="/add-car"
                       className="flex items-center gap-2 rounded-lg px-4 py-3 hover:bg-gray-100"
                     >
-                      <FaPlusCircle size={16} />
+                      <FaPlusCircle />
                       Add Car
                     </Link>
 
@@ -145,7 +158,7 @@ const Navbar = () => {
                       href="/my-bookings"
                       className="flex items-center gap-2 rounded-lg px-4 py-3 hover:bg-gray-100"
                     >
-                      <FaCalendarCheck size={16} />
+                      <FaCalendarCheck />
                       My Bookings
                     </Link>
 
@@ -153,79 +166,84 @@ const Navbar = () => {
                       href="/my-added-cars"
                       className="flex items-center gap-2 rounded-lg px-4 py-3 hover:bg-gray-100"
                     >
-                      <FaCar size={16} />
+                      <FaCar />
                       My Added Cars
                     </Link>
 
-                    <Button className="flex w-full items-center gap-2 rounded-lg px-4 py-3 text-red-500 hover:bg-red-50">
-                      <FaSignOutAlt size={16} />
+                    <button
+                      onClick={handleLogout}
+                      className="flex w-full items-center gap-2 rounded-lg px-4 py-3 text-red-600 hover:bg-red-50"
+                    >
+                      <FaSignOutAlt />
                       Logout
-                    </Button>
+                    </button>
+
                   </div>
                 </div>
               )}
             </div>
           )}
+
         </div>
 
-        {/* Mobile Button */}
-        <Button
+        {/* Mobile Menu Button */}
+        <button
           className="lg:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
         >
-          {mobileOpen ? <FaTimes size={22} /> : <FaBars size={22} />}
-        </Button>
+          {mobileOpen ? (
+            <FaTimes size={24} />
+          ) : (
+            <FaBars size={24} />
+          )}
+        </button>
+
       </div>
 
       {/* Mobile Menu */}
       {mobileOpen && (
         <div className="border-t bg-white lg:hidden">
-          <div className="space-y-2 p-5">
-            <Link href="/" className="block py-2">
-              Home
-            </Link>
 
-            <Link href="/explore-cars" className="block py-2">
-              Explore Cars
-            </Link>
+          <div className="space-y-3 p-6">
+
+            <Link href="/">Home</Link>
+
+            <Link href="/explore-cars">Explore Cars</Link>
+
+            <Link href="/add-car">Add Car</Link>
+
+            <Link href="/my-bookings">My Bookings</Link>
+
+            <Link href="/my-added-cars">My Added Cars</Link>
 
             {user ? (
-              <>
-                <Link href="/add-car" className="block py-2">
-                  Add Car
-                </Link>
-
-                <Link href="/my-bookings" className="block py-2">
-                  My Bookings
-                </Link>
-
-                <Link href="/my-added-cars" className="block py-2">
-                  My Added Cars
-                </Link>
-
-                <button className="mt-2 w-full rounded-xl bg-red-500 py-3 text-white">
-                  Logout
-                </button>
-              </>
+              <Button
+                onClick={handleLogout}
+                className="w-full bg-red-500 text-white"
+              >
+                Logout
+              </Button>
             ) : (
               <>
-                <Link href="/login" className="block py-2">
+                <Link href="/login" className="block">
                   Login
                 </Link>
 
                 <Link
                   href="/register"
-                  className="mt-2 block rounded-xl bg-blue-600 py-3 text-center text-white"
+                  className="block rounded-xl bg-blue-600 py-3 text-center text-white"
                 >
                   Register
                 </Link>
               </>
             )}
+
           </div>
+
         </div>
       )}
-    </header>
+    </div>
   );
-}
+};
 
 export default Navbar;

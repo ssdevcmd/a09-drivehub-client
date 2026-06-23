@@ -2,93 +2,145 @@ import DeleteAlert from "@/components/DeleteAlert";
 import EditModal from "@/components/EditModal";
 import { Button } from "@heroui/react";
 import Image from "next/image";
-import React from "react";
-import { FaCar, FaGasPump, FaMapMarkerAlt, FaUsers } from "react-icons/fa";
+import {
+  FaCar,
+  FaGasPump,
+  FaMapMarkerAlt,
+  FaUsers,
+  FaCheckCircle,
+  FaStar,
+} from "react-icons/fa";
 
 const CarDetailsPage = async ({ params }) => {
-    const { id } = await params;
+  const { id } = await params;
 
+  const res = await fetch(`http://localhost:5000/explore-cars/${id}`);
+  const car = await res.json();
 
-    const res = await fetch(`http://localhost:5000/explore-cars/${id}`);
+  return (
+    <section className="mx-auto max-w-7xl px-6 py-12">
+      <div className="grid items-start gap-12 lg:grid-cols-2">
+        {/* LEFT SIDE */}
+        <div className="overflow-hidden rounded-3xl border bg-white shadow-xl">
+          <Image
+            src={car.image}
+            alt={car.carModel}
+            width={700}
+            height={500}
+            className="h-[500px] w-full object-cover"
+          />
+        </div>
 
-    const car = await res.json();
+        {/* RIGHT SIDE */}
+        <div>
+          {/* Edit & Delete */}
+          <div className="mb-6 flex justify-end gap-3">
+            <EditModal car={car} />
+            <DeleteAlert car={car} />
+          </div>
 
-    return (
-        <div className="mx-auto max-w-7xl px-6 py-12">
-            <div className="grid gap-10 lg:grid-cols-2">
-                {/* <EditModal car={car}></EditModal> */}
-                {/* Image */}
-                {/* <div className="overflow-hidden rounded-3xl shadow-xl"> */}
-                    <Image
-                        src={car.image}
-                        alt={car.carModel || "Car Image"}
-                        width={700}
-                        height={500}
-                        className="h-full w-full object-cover"
-                    />
-                {/* </div> */}
+          {/* Rating */}
+          <div className="mb-3 flex items-center gap-1 text-yellow-500">
+            <FaStar />
+            <FaStar />
+            <FaStar />
+            <FaStar />
+            <FaStar />
+            <span className="ml-2 text-sm text-gray-500">(5 Reviews)</span>
+          </div>
 
-                <div>
-                    <div className="flex items-center gap-3 justify-end mt-5 mb-3">
-                        <EditModal car={car} />
-                        <DeleteAlert car={car}/>
-                        </div>
-                    </div>
+          {/* Title */}
+          <h1 className="text-4xl font-bold">
+            {car.brand} {car.carModel}
+          </h1>
 
-                    {/* Details */}
-                    <div>
-                        <span className="rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-600">
-                            {car.carType}
-                        </span>
+          {/* Type */}
+          <span className="mt-4 inline-block rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-600">
+            {car.carType}
+          </span>
 
-                        <h1 className="mt-4 text-5xl font-bold">{car.carModel}</h1>
+          {/* Price */}
+          <div className="mt-8">
+            <h2 className="text-5xl font-bold text-blue-600">
+              ${car.dailyRentalPrice}
+            </h2>
 
-                        <p className="mt-2 text-xl text-gray-500">{car.brand}</p>
+            <p className="text-gray-500">Per Day</p>
+          </div>
 
-                        <div className="mt-8 space-y-4">
-                            <div className="flex items-center gap-3">
-                                <FaMapMarkerAlt className="text-blue-600" />
-                                <span>{car.location}</span>
-                            </div>
+          {/* Availability */}
+          <div className="mt-6 flex items-center gap-2">
+            <FaCheckCircle
+              className={
+                car.availability === "Available"
+                  ? "text-green-500"
+                  : "text-red-500"
+              }
+            />
 
-                            <div className="flex items-center gap-3">
-                                <FaGasPump className="text-blue-600" />
-                                <span>{car.fuelType}</span>
-                            </div>
+            <span className="font-medium">
+              {car.availability}
+            </span>
+          </div>
 
-                            <div className="flex items-center gap-3">
-                                <FaUsers className="text-blue-600" />
-                                <span>{car.seats} Seats</span>
-                            </div>
+          {/* Features */}
+          <div className="mt-8 grid grid-cols-2 gap-5 rounded-2xl border p-6">
 
-                            <div className="flex items-center gap-3">
-                                <FaCar className="text-blue-600" />
-                                <span>{car.availability}</span>
-                            </div>
-                        </div>
-
-                        <div className="mt-8">
-                            <h2 className="text-3xl font-bold text-blue-600">
-                                ${car.dailyRentalPrice}
-                                <span className="text-lg text-gray-500"> / day</span>
-                            </h2>
-                        </div>
-
-                        <div className="mt-8">
-                            <h3 className="text-2xl font-semibold">Overview</h3>
-
-                            <p className="mt-3 leading-8 text-gray-600">
-                                {car.description}
-                            </p>
-                        </div>
-
-                        <Button className="mt-10 rounded-xl bg-blue-600 px-8 py-4 text-lg font-semibold text-white transition hover:bg-blue-700">
-                            Book Now
-                        </Button>
-                    </div>
-                </div>
+            <div className="flex items-center gap-3">
+              <FaMapMarkerAlt className="text-blue-600" />
+              <div>
+                <p className="text-sm text-gray-500">Location</p>
+                <p className="font-semibold">{car.location}</p>
+              </div>
             </div>
-            );
+
+            <div className="flex items-center gap-3">
+              <FaGasPump className="text-blue-600" />
+              <div>
+                <p className="text-sm text-gray-500">Fuel</p>
+                <p className="font-semibold">{car.fuelType}</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <FaUsers className="text-blue-600" />
+              <div>
+                <p className="text-sm text-gray-500">Seats</p>
+                <p className="font-semibold">{car.seats}</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <FaCar className="text-blue-600" />
+              <div>
+                <p className="text-sm text-gray-500">Type</p>
+                <p className="font-semibold">{car.carType}</p>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Description */}
+          <div className="mt-10">
+            <h3 className="mb-3 text-2xl font-bold">
+              Description
+            </h3>
+
+            <p className="leading-8 text-gray-600">
+              {car.description}
+            </p>
+          </div>
+
+          {/* Buttons */}
+          <div className="mt-10 flex gap-4">
+            <Button className="rounded-xl bg-blue-600 px-8 py-6 text-lg font-semibold text-white hover:bg-blue-700">
+              Book Now
+            </Button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 };
 
-            export default CarDetailsPage;
+export default CarDetailsPage;

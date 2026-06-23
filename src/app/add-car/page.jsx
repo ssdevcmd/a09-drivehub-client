@@ -201,6 +201,10 @@ const AddCarPage = () => {
                                             Diesel
                                             <ListBox.ItemIndicator />
                                         </ListBox.Item>
+                                        <ListBox.Item id="Gas" textValue="Gas">
+                                            Gas
+                                            <ListBox.ItemIndicator />
+                                        </ListBox.Item>
 
                                         <ListBox.Item id="Electric" textValue="Electric">
                                             Electric
