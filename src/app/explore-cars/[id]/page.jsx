@@ -1,3 +1,4 @@
+import BookingCard from "@/components/BookingCard";
 import DeleteAlert from "@/components/DeleteAlert";
 import EditModal from "@/components/EditModal";
 import { Button } from "@heroui/react";
@@ -11,7 +12,7 @@ const CarDetailsPage = async ({ params }) => {
   const car = await res.json();
 
   return (
-    <section className="mx-auto max-w-7xl px-6 py-12">
+    <div className="mx-auto max-w-7xl px-6 py-12">
       <div className="grid items-start gap-12 lg:grid-cols-2">
         {/* LEFT SIDE */}
         <div className="overflow-hidden rounded-3xl border bg-white shadow-xl">
@@ -53,13 +54,13 @@ const CarDetailsPage = async ({ params }) => {
           </span>
 
           {/* Price */}
-          <div className="mt-8">
+          {/* <div className="mt-8">
             <h2 className="text-5xl font-bold text-blue-600">
               ${car.dailyRentalPrice}
             </h2>
 
             <p className="text-gray-500">Per Day</p>
-          </div>
+          </div> */}
 
           {/* Availability */}
           <div className="mt-6 flex items-center gap-2">
@@ -113,26 +114,24 @@ const CarDetailsPage = async ({ params }) => {
 
           </div>
 
-          {/* Description */}
-          <div className="mt-10">
-            <h3 className="mb-3 text-2xl font-bold">
-              Description
-            </h3>
+          <div className="mt-10 flex flex-col gap-10 lg:flex-row">
+            <div className="flex-1">
+              <h3 className="mb-3 text-2xl font-bold">
+                Description
+              </h3>
 
-            <p className="leading-8 text-gray-600">
-              {car.description}
-            </p>
-          </div>
+              <p className="leading-8 text-gray-600">
+                {car.description}
+              </p>
+            </div>
 
-          {/* Buttons */}
-          <div className="mt-10 flex gap-4">
-            <Button className="rounded-xl bg-blue-600 px-8 py-6 text-lg font-semibold text-white hover:bg-blue-700">
-              Book Now
-            </Button>
+            <div className="w-full lg:w-[350px]">
+              <BookingCard car={car} />
+            </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

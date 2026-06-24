@@ -4,7 +4,7 @@ import { FaArrowRight, FaCar } from "react-icons/fa";
 
 const Banner = () => {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-r from-slate-950 via-blue-950 to-slate-900">
+    <div className="relative overflow-hidden bg-gradient-to-r from-slate-950 via-blue-950 to-slate-900">
       {/* Background Blur */}
       <div className="absolute -left-20 top-0 h-72 w-72 rounded-full bg-blue-600/20 blur-3xl"></div>
       <div className="absolute -right-20 bottom-0 h-72 w-72 rounded-full bg-cyan-500/20 blur-3xl"></div>
@@ -53,7 +53,7 @@ const Banner = () => {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
