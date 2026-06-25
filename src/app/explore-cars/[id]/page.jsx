@@ -53,15 +53,6 @@ const CarDetailsPage = async ({ params }) => {
             {car.carType}
           </span>
 
-          {/* Price */}
-          {/* <div className="mt-8">
-            <h2 className="text-5xl font-bold text-blue-600">
-              ${car.dailyRentalPrice}
-            </h2>
-
-            <p className="text-gray-500">Per Day</p>
-          </div> */}
-
           {/* Availability */}
           <div className="mt-6 flex items-center gap-2">
             <FaCheckCircle
@@ -115,7 +106,7 @@ const CarDetailsPage = async ({ params }) => {
           </div>
 
           <div className="mt-10 flex flex-col gap-10 lg:flex-row">
-            <div className="flex-1">
+            {/* <div className="flex-1">
               <h3 className="mb-3 text-2xl font-bold">
                 Description
               </h3>
@@ -123,12 +114,22 @@ const CarDetailsPage = async ({ params }) => {
               <p className="leading-8 text-gray-600">
                 {car.description}
               </p>
-            </div>
+            </div> */}
 
             <div className="w-full lg:w-[350px]">
               <BookingCard car={car} />
             </div>
           </div>
+        </div>
+        {/* Description Below */}
+        <div className="mt-2 rounded-3xl border bg-white p-8 shadow-lg">
+          <h3 className="mb-4 text-3xl font-bold">
+            Description
+          </h3>
+
+          <p className="leading-8 text-gray-600">
+            {car.description}
+          </p>
         </div>
       </div>
     </div>

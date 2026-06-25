@@ -47,6 +47,7 @@ const BookingCard = ({ car }) => {
       dailyRentalPrice,
       bookingDate: new Date(bookingDate),
 
+      userId: user?.id,
       userName: user?.name,
       userEmail: user?.email,
       userImage: user?.image,
