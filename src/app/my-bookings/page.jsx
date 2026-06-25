@@ -67,14 +67,13 @@ const MyBookingPage = async () => {
 
                                         <div className="mt-2 flex items-center gap-2">
                                             <SlCalender
-                                                className='text-blue-600' />
+                                              className='text-blue-600' />
                                             <span>
-                                                {new Date(booking.bookingDate).toLocaleDateString(
-                                                    "en-US",
-                                                    {
-                                                        year: "numeric",
-                                                        month: "long",
-                                                        day: "numeric",
+                                              {new Date(booking.bookingDate).toLocaleDateString(
+                                                    "en-US",          {
+                                                year: "numeric",
+                                                month: "long",
+                                                day: "numeric",
                                                     }
                                                 )}
                                             </span>
@@ -90,9 +89,6 @@ const MyBookingPage = async () => {
                                         <h3 className="text-3xl font-bold text-cyan-500">
                                             ${booking.dailyRentalPrice}<span className='text-sm text-gray-400'>/day</span>
                                         </h3>
-
-
-
 
                                     </div>
                                     <BookingCancelAlert bookingId={booking._id} />

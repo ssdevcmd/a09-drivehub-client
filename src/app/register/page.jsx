@@ -1,9 +1,10 @@
 "use client";
 
 import { authClient } from "@/lib/auth-client";
-import { Button, Description, FieldError, Form, Input, Label, Separator, TextField, toast } from "@heroui/react";
+import { Button, Description, FieldError, Form, Input, Label, Separator, TextField } from "@heroui/react";
 import { Card } from '@heroui/react';
 import { redirect } from "next/navigation";
+import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 
 
@@ -22,11 +23,12 @@ const RegisterPage = () => {
         })
 
         if (data) {
+            toast.success('Registration successful!');
             redirect('/login');
         }
 
         if (error) {
-            alert('Error')
+            toast.error(error.message);
         }
         // console.log(user);
         // console.log({data, error});
@@ -42,7 +44,7 @@ const RegisterPage = () => {
         <div className="max-w-7xl mx-auto my-8">
             <div className="text-center">
                 <h1 className="text-2xl font-bold mb-2">Create Account</h1>
-                <p className="font-semibold mb-2">Find your perfect car with DriveHub</p>
+                <p className="mb-2">Find your perfect car with DriveHub</p>
             </div>
             <Card>
                 <Form className="flex w-96 flex-col gap-4" onSubmit={onSubmit}>

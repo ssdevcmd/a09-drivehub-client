@@ -1,35 +1,49 @@
 "use client";
+import { authClient } from '@/lib/auth-client';
 import { FieldError, Input, Label, TextField, Select, ListBox, TextArea, Button, Card } from '@heroui/react';
 import React from 'react';
 
 const AddCarPage = () => {
+     const { data: session } = authClient.useSession();
     const onSubmit = async (e) => {
         e.preventDefault()
         const formData = new FormData(e.currentTarget)
         const car = Object.fromEntries(formData.entries())
 
-        console.log(car, 'car info');
+
+        const user = session?.user;
+
+        const carData = {
+            ...car,
+            userId: user.id,
+            userName: user.name,
+            userEmail: user.email,
+            createdAt: new Date(),
+        };
+
+        // console.log(car, 'car info');
 
         const res = await fetch('http://localhost:5000/car', {
             method: "POST",
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(car)
+            body: JSON.stringify(carData)
         });
 
-        const data = await res.json()
+        const cars = await res.json()
+        // console.log(cars);
 
     }
 
-    
+
     return (
         <div className='p-5 max-w-7xl mx-auto'>
             <h1 className='text-4xl font-bold'>Add car</h1>
             <Card className="mx-auto w-full max-w-5xl rounded-3xl p-8 shadow-xl">
                 <form
-                onSubmit={onSubmit} 
-                className="space-y-8">
+                    onSubmit={onSubmit}
+                    className="space-y-8">
                     <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
                         {/* Car Model */}
                         <TextField name="carModel" isRequired>
@@ -218,15 +232,6 @@ const AddCarPage = () => {
                                     </ListBox>
                                 </Select.Popover>
                             </Select>
-                        </div>
-
-                        {/* Departure Date */}
-                        <div className="md:col-span-2">
-                            <TextField name="pickupDate" type="date" isRequired>
-                                <Label>Pickup Date</Label>
-                                <Input type="date" className="rounded-2xl" />
-                                <FieldError />
-                            </TextField>
                         </div>
 
                         {/* Image URL */}

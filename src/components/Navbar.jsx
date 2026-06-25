@@ -5,8 +5,9 @@ import Image from "next/image";
 import { useState } from "react";
 import { authClient } from "@/lib/auth-client";
 import { Button } from "@heroui/react";
-import { LuCarFront } from "react-icons/lu";
+import { LuCarFront, LuScanSearch } from "react-icons/lu";
 import { FaBars, FaTimes, FaHome, FaCar, FaPlusCircle, FaCalendarCheck, FaUserCircle, FaSignOutAlt, FaSignInAlt } from "react-icons/fa";
+import { RiFileSearchFill } from "react-icons/ri";
 
 const Navbar = () => {
   const { data: session } = authClient.useSession();
@@ -48,8 +49,9 @@ const Navbar = () => {
 
           <Link
             href="/explore-cars"
-            className="hover:text-blue-600 transition"
+            className="flex items-center gap-2 hover:text-blue-600 transition"
           >
+            <RiFileSearchFill />
             Explore Cars
           </Link>
 
@@ -78,7 +80,7 @@ const Navbar = () => {
 
               <Link
                 href="/register"
-                className="rounded-xl bg-blue-600 px-5 py-2 text-white hover:bg-blue-700 transition"
+                className="rounded-xl px-5 py-2 hover:text-blue-700"
               >
                 Register
               </Link>
@@ -181,7 +183,7 @@ const Navbar = () => {
       {mobileOpen && (
         <div className="border-t bg-white lg:hidden">
 
-          <div className="space-y-3 p-6">
+          <div className="space-y-3 p-6 gap-2 grid grid-rows-1 text-center">
 
             <Link href="/">Home</Link>
 

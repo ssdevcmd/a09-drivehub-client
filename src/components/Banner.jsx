@@ -13,7 +13,7 @@ const Banner = () => {
         {/* Left Content */}
         <div className="text-center lg:text-left">
           <div className="inline-flex items-center gap-2 rounded-full border border-blue-500/40 bg-blue-500/10 px-4 py-2 text-sm font-medium text-blue-300">
-            <FaCar className="text-blue-500" />
+            <FaCar className="text-blue-500 animate-bounce" />
             Trusted Car Rental Platform
           </div>
 
