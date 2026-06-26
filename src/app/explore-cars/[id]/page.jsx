@@ -23,7 +23,19 @@ const CarDetailsPage = async ({ params }) => {
             height={500}
             className="h-[500px] w-full object-cover"
           />
+
+          {/* Description Below */}
+          <div className="mt-4 rounded-3xl border bg-white p-8 shadow-lg">
+            <h3 className="mb-4 text-3xl font-bold">
+              Description
+            </h3>
+
+            <p className="text-gray-600">
+              {car.description}
+            </p>
+          </div>
         </div>
+
 
         {/* RIGHT SIDE */}
         <div>
@@ -68,6 +80,21 @@ const CarDetailsPage = async ({ params }) => {
             </span>
           </div>
 
+          {/* <div className="mt-4 flex items-center gap-2">
+            <p className="rounded-full bg-green-100 px-3 py-1 text-sm font-semibold text-green-700">
+             Booked by {car.booking_count} users
+            </p>
+          </div> */}
+
+          <div className="mt-4 flex items-center gap-2">
+            <p className="rounded-full bg-green-100 px-3 py-1 text-sm font-semibold text-green-700">
+              {car.booking_count > 0
+                ? `${car.booking_count} ${car.booking_count === 1 ? "user has" : "users have"
+                } booked this car`
+                : "No users have booked this car yet"}
+            </p>
+          </div>
+
           {/* Features */}
           <div className="mt-8 grid grid-cols-2 gap-5 rounded-2xl border p-6">
 
@@ -104,9 +131,9 @@ const CarDetailsPage = async ({ params }) => {
             </div>
 
           </div>
-
-          <div className="mt-10 flex flex-col gap-10 lg:flex-row">
-            {/* <div className="flex-1">
+          {/* 
+          <div className="mt-10 flex flex-col gap-10 lg:flex-row"> */}
+          {/* <div className="flex-1">
               <h3 className="mb-3 text-2xl font-bold">
                 Description
               </h3>
@@ -116,23 +143,15 @@ const CarDetailsPage = async ({ params }) => {
               </p>
             </div> */}
 
-            <div className="w-full lg:w-[350px]">
-              <BookingCard car={car} />
-            </div>
+
+          <div className="w-full lg:w-[350px]">
+            <BookingCard car={car} />
           </div>
         </div>
-        {/* Description Below */}
-        <div className="mt-2 rounded-3xl border bg-white p-8 shadow-lg">
-          <h3 className="mb-4 text-3xl font-bold">
-            Description
-          </h3>
-
-          <p className="leading-8 text-gray-600">
-            {car.description}
-          </p>
-        </div>
       </div>
+
     </div>
+
   );
 };
 

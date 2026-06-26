@@ -6,9 +6,13 @@ import {
   Card,
   DateField,
   Label,
+  Modal,
 } from "@heroui/react";
+import { Rocket } from "lucide-react";
+import { redirect } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
+
 
 const BookingCard = ({ car }) => {
   const { data: session } = authClient.useSession();
@@ -25,6 +29,9 @@ const BookingCard = ({ car }) => {
   } = car;
 
   const [bookingDate, setBookingDate] = useState(null);
+  const [driverNeeded, setDriverNeeded] = useState("No");
+  const [specialNote, setSpecialNote] = useState("");
+  // const [isOpen, setIsOpen] = useState(false);
   // console.log(new Date(bookingDate));
 
   const handleBooking = async () => {
@@ -46,7 +53,10 @@ const BookingCard = ({ car }) => {
       location,
       dailyRentalPrice,
       bookingDate: new Date(bookingDate),
+      driverNeeded,
+      specialNote,
 
+      booking_count: 0,
       userId: user?.id,
       userName: user?.name,
       userEmail: user?.email,
@@ -74,6 +84,7 @@ const BookingCard = ({ car }) => {
       toast.error("Something went wrong.");
       console.log(error);
     }
+    redirect('/my-bookings');
   };
 
   return (
@@ -105,13 +116,63 @@ const BookingCard = ({ car }) => {
         </DateField.Group>
       </DateField>
 
-      <Button
-        onClick={handleBooking}
-        className="w-full rounded-none bg-blue-600 text-white hover:bg-blue-700"
-      >
-        Book Now
-      </Button>
-    </Card>
+
+      <Modal>
+        <Button
+          variant="secondary"
+          className="w-full rounded-none bg-blue-600 text-white hover:bg-blue-700"
+        >Book Now</Button>
+        <Modal.Backdrop>
+          <Modal.Container>
+            <Modal.Dialog className="sm:max-w-[360px]">
+              <Modal.CloseTrigger />
+              <Modal.Header>
+                
+                <Modal.Heading className="text-2xl font-bold">{carModel}</Modal.Heading>
+              </Modal.Header>
+              <Modal.Body>
+                <div>
+                  <Label htmlFor="driverNeeded">Driver Needed</Label>
+
+                  <select
+                    id="driverNeeded"
+                    value={driverNeeded}
+                    onChange={(e) => setDriverNeeded(e.target.value)}
+                    className="mt-2 w-full rounded-lg border border-gray-300 p-3 focus:border-blue-500 focus:outline-none"
+                  >
+                    <option value="">Select an option</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+              
+
+              <div>
+                <Label>Special Note</Label>
+
+                <textarea
+                  value={specialNote}
+                  onChange={(e) => setSpecialNote(e.target.value)}
+                  placeholder="Any special requirements..."
+                  className="mt-2 w-full rounded-md border p-3"
+                  rows={4}
+                />
+              </div>
+            </Modal.Body>
+
+            <Modal.Footer>
+              <Button
+              onClick={handleBooking} 
+              className="w-full rounded-none bg-blue-600 text-white hover:bg-blue-700" slot="close">
+                Book Now
+              </Button>
+            </Modal.Footer>
+          </Modal.Dialog>
+        </Modal.Container>
+      </Modal.Backdrop>
+    </Modal>
+
+    </Card >
   );
 };
 

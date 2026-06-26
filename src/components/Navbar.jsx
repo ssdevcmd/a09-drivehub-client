@@ -8,6 +8,8 @@ import { Button } from "@heroui/react";
 import { LuCarFront, LuScanSearch } from "react-icons/lu";
 import { FaBars, FaTimes, FaHome, FaCar, FaPlusCircle, FaCalendarCheck, FaUserCircle, FaSignOutAlt, FaSignInAlt } from "react-icons/fa";
 import { RiFileSearchFill } from "react-icons/ri";
+import { GiArchiveRegister } from "react-icons/gi";
+import { BiLogOut } from "react-icons/bi";
 
 const Navbar = () => {
   const { data: session } = authClient.useSession();
@@ -31,13 +33,19 @@ const Navbar = () => {
             <LuCarFront size={24} />
           </div>
 
-          <h1 className="text-2xl font-bold">
-            Drive<span className="text-blue-600">Hub</span>
-          </h1>
+          <div className="flex flex-col">
+            <h1 className="text-2xl font-bold">
+              Drive<span className="text-blue-600">Hub</span>
+            </h1>
+
+            <p className="text-sm text-gray-500">
+              Rental Club
+            </p>
+          </div>
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden items-center gap-8 lg:flex">
+        <nav className="hidden items-center gap-5 lg:flex">
 
           <Link
             href="/"
@@ -72,18 +80,19 @@ const Navbar = () => {
             <>
               <Link
                 href="/login"
-                className="flex items-center gap-2 hover:text-blue-600"
+                className="flex items-center gap-2 rounded-xl px-5 py-2 bg-blue-500 text-black hover:bg-blue-600"
               >
                 <FaSignInAlt />
                 Login
               </Link>
 
-              <Link
+              {/* <Link
                 href="/register"
-                className="rounded-xl px-5 py-2 hover:text-blue-700"
+                className="flex items-center gap-2 rounded-xl px-5 py-2 hover:text-blue-700"
               >
+                <GiArchiveRegister />
                 Register
-              </Link>
+              </Link> */}
             </>
           ) : (
             <div className="relative">
@@ -154,7 +163,7 @@ const Navbar = () => {
                       onClick={handleLogout}
                       className="flex w-full items-center gap-2 rounded-lg px-4 py-3 text-red-600 hover:bg-red-50"
                     >
-                      <FaSignOutAlt />
+                      <BiLogOut />
                       Logout
                     </Button>
                   </div>
@@ -208,12 +217,6 @@ const Navbar = () => {
                   Login
                 </Link>
 
-                <Link
-                  href="/register"
-                  className="block rounded-xl bg-blue-600 py-3 text-center text-white"
-                >
-                  Register
-                </Link>
               </>
             )}
 

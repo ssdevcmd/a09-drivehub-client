@@ -6,6 +6,7 @@ import { redirect } from 'next/navigation';
 import React from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import toast from 'react-hot-toast';
+import Link from 'next/link';
 
 const LoginPage = () => {
 
@@ -42,77 +43,107 @@ const LoginPage = () => {
 
 
   return (
-    <div className='max-w-7xl mx-auto my-8'>
-      <div className='text-center my-3'>
-        <h1 className='text-2xl font-bold mb-2'>Login</h1>
-        <p className='mb-2'>Start your ride with DriveHub</p>
-      </div>
-      <Card>
-        <Form onSubmit={onSubmit} className="flex w-96 flex-col gap-4">
+    <div className="min-h-screen bg-slate-50 flex items-center justify-center px-6">
+      <div className="grid w-full max-w-6xl grid-cols-1 gap-10 lg:grid-cols-2">
 
-          {/* email */}
-          <TextField
-            isRequired
-            name="email"
-            type="email"
-            validate={(value) => {
-              if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
-                return "Please enter a valid email address";
-              }
-              return null;
-            }}
-          >
-            <Label>Email</Label>
-            <Input placeholder="Enter a valid email address" />
-            <FieldError />
-          </TextField>
+        {/* Left Side */}
+        <div className="flex flex-col justify-center">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-gray-500">
+            Secure Access
+          </p>
 
-          {/* password */}
-          <TextField
-            isRequired
-            minLength={6}
-            name="password"
-            type="password"
-            validate={(value) => {
-              if (value.length < 6) {
-                return "Password must be at least 6 characters";
-              }
-              if (!/[A-Z]/.test(value)) {
-                return "Password must contain at least one uppercase letter";
-              }
-              if (!/[a-z]/.test(value)) {
-                return "Password must contain at least one lowercase letter";
-              }
-              return null;
-            }}
-          >
-            <Label>Password</Label>
-            <Input placeholder="Enter your password" />
-            <Description>Must be at least 6 characters with 1 uppercase and 1 lowercase letter</Description>
-            <FieldError />
-          </TextField>
-          <div className="flex justify-center gap-2">
+          <h1 className="text-5xl font-black leading-none text-black">
+            Welcome back
+            <br />
+            to DriveHub
+          </h1>
+
+          <p className="mt-6 max-w-md text-gray-500">
+            Manage your bookings, explore available cars, and keep your rental
+            history organized in one secure dashboard.
+          </p>
+        </div>
+
+        {/* Right Side */}
+        <div className="rounded-3xl bg-white p-8 shadow-2xl">
+          <h2 className="mb-6 text-3xl font-bold">
+            Login
+          </h2>
+
+          <Form onSubmit={onSubmit} className="space-y-5">
+
+            {/* email */}
+            <TextField
+              isRequired
+              name="email"
+              type="email"
+              validate={(value) => {
+                if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
+                  return "Please enter a valid email address";
+                }
+                return null;
+              }}
+            >
+              <Label>Email</Label>
+              <Input placeholder="Enter a valid email address" />
+              <FieldError />
+            </TextField>
+
+            {/* password */}
+            <TextField
+              isRequired
+              minLength={6}
+              name="password"
+              type="password"
+              validate={(value) => {
+                if (value.length < 6) {
+                  return "Password must be at least 6 characters";
+                }
+                if (!/[A-Z]/.test(value)) {
+                  return "Password must contain at least one uppercase letter";
+                }
+                if (!/[a-z]/.test(value)) {
+                  return "Password must contain at least one lowercase letter";
+                }
+                return null;
+              }}
+            >
+              <Label>Password</Label>
+              <Input placeholder="Enter your password" />
+              <Description>Must be at least 6 characters with 1 uppercase and 1 lowercase letter</Description>
+              <FieldError />
+            </TextField>
+
             <Button
               type="submit"
-              className="w-full rounded-xl bg-blue-500 font-semibold text-white hover:bg-blue-700">
+              className="w-full rounded-xl bg-blue-500 py-3 font-bold text-black hover:bg-blue-600"
+            >
               Login
             </Button>
-          </div>
-        </Form>
-        <div className='flex justify-center items-center gap-3'>
-          <Separator></Separator>
-          <div className='whitespace-nowrap'>Or sign up with</div>
-          <Separator></Separator>
+
+            <Button
+              onClick={handleGoogleSignIn}
+              variant="bordered"
+              className="w-full rounded-xl"
+            >
+              <FcGoogle className="text-xl" />
+              Sign in with Google
+            </Button>
+
+            <p className="text-center text-sm text-gray-500">
+              New to DriveHub?{" "}
+              <Link
+                href="/register"
+                className="font-semibold text-blue-600 hover:underline"
+              >
+                Register
+              </Link>
+            </p>
+
+          </Form>
         </div>
-        <div>
-          <Button
-            onClick={handleGoogleSignIn}
-            variant='outline'
-            className='w-full rounded-xl bg-cyan-500 font-semibold text-white hover:bg-cyan-700'>
-            <FcGoogle /> Login in with Google
-          </Button>
-        </div>
-      </Card>
+
+      </div>
     </div>
   );
 };

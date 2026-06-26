@@ -1,8 +1,10 @@
+import DeleteAlert from "@/components/DeleteAlert";
+import EditModal from "@/components/EditModal";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import Image from "next/image";
 
-const MyAddedCarsPage = async () => {
+const MyAddedCarsPage = async ({ car }) => {
     const session = await auth.api.getSession({
         headers: await headers(),
     });
@@ -59,9 +61,17 @@ const MyAddedCarsPage = async () => {
                                     ${car.dailyRentalPrice}
                                     <span className='text-sm text-gray-400'>/day</span>
                                 </p>
+
+                                <div className="mt-6 flex gap-3">
+                                    <EditModal car={car} />
+
+                                    <DeleteAlert car={car} />
+                                </div>
                             </div>
                         </div>
+
                     ))}
+
                 </div>
             )}
         </div>

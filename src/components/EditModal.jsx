@@ -154,18 +154,10 @@ const EditModal = ({ car }) => {
 
                 <Modal.Footer className="flex justify-end gap-3">
                   <Button
-                    variant="outline"
-                    slot="close"
-                    className="rounded-xl"
-                  >
-                    Cancel
-                  </Button>
-
-                  <Button
                     type="submit"
-                    className="rounded-xl bg-blue-600 text-white hover:bg-blue-700"
+                    className="w-full rounded-xl bg-blue-600 text-white hover:bg-blue-700"
                   >
-                    Save Changes
+                    Update Car
                   </Button>
                 </Modal.Footer>
               </form>
