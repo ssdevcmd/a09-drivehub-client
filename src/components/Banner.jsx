@@ -1,6 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { FaArrowRight, FaCar } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 const Banner = () => {
   return (
@@ -11,7 +14,12 @@ const Banner = () => {
 
       <div className="mx-auto grid min-h-[90vh] max-w-7xl items-center gap-10 px-6 py-10 lg:grid-cols-2">
         {/* Left Content */}
-        <div className="text-center lg:text-left">
+        <motion.div
+          initial={{ opacity: 0, x: -80 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-center lg:text-left"
+        >
           <div className="inline-flex items-center gap-2 rounded-full border border-blue-500/40 bg-blue-500/10 px-4 py-2 text-sm font-medium text-blue-300">
             <FaCar className="text-blue-500 animate-bounce" />
             Trusted Car Rental Platform
@@ -28,20 +36,30 @@ const Banner = () => {
             DriveHub helps you hit the road with confidence.
           </p>
 
-          <div className="mt-10">
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="mt-10 inline-block"
+          >
             <Link
               href="/explore-cars"
-              className="inline-flex items-center gap-3 rounded-xl bg-blue-600 px-8 py-4 text-lg font-semibold text-white transition hover:scale-105 hover:bg-blue-700"
+              className="inline-flex items-center gap-3 rounded-xl bg-blue-600 px-8 py-4 text-lg font-semibold text-white hover:bg-blue-700"
             >
               Explore Cars
               <FaArrowRight />
             </Link>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
-        {/* Right Image */}
-        <div className="flex justify-center">
-           <div className="overflow-hidden rounded-[22px] border-8 border-gray-800">
+
+      {/* Right Image */}
+      <motion.div
+        initial={{ opacity: 0, x: 80, scale: 0.9 }}
+        animate={{ opacity: 1, x: 0, scale: 1 }}
+        transition={{ duration: 0.9, delay: 0.3 }}
+        className="flex justify-center"
+      >
+        <div className="overflow-hidden rounded-[22px] border-8 border-gray-800">
           <Image
             src="/assets/Banner6.jpg"
             alt="DriveHub Car"
@@ -50,9 +68,9 @@ const Banner = () => {
             loading="eager"
             className="w-full h-full object-cover"
           />
-          </div>
         </div>
-      </div>
+      </motion.div>
+    </div>
     </div>
   );
 };

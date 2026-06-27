@@ -7,6 +7,7 @@ import React from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import toast from 'react-hot-toast';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 const LoginPage = () => {
 
@@ -65,83 +66,89 @@ const LoginPage = () => {
         </div>
 
         {/* Right Side */}
-        <div className="rounded-3xl bg-white p-8 shadow-2xl">
-          <h2 className="mb-6 text-3xl font-bold">
-            Login
-          </h2>
-
-          <Form onSubmit={onSubmit} className="space-y-5">
-
-            {/* email */}
-            <TextField
-              isRequired
-              name="email"
-              type="email"
-              validate={(value) => {
-                if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
-                  return "Please enter a valid email address";
-                }
-                return null;
-              }}
-            >
-              <Label>Email</Label>
-              <Input placeholder="Enter a valid email address" />
-              <FieldError />
-            </TextField>
-
-            {/* password */}
-            <TextField
-              isRequired
-              minLength={6}
-              name="password"
-              type="password"
-              validate={(value) => {
-                if (value.length < 6) {
-                  return "Password must be at least 6 characters";
-                }
-                if (!/[A-Z]/.test(value)) {
-                  return "Password must contain at least one uppercase letter";
-                }
-                if (!/[a-z]/.test(value)) {
-                  return "Password must contain at least one lowercase letter";
-                }
-                return null;
-              }}
-            >
-              <Label>Password</Label>
-              <Input placeholder="Enter your password" />
-              <Description>Must be at least 6 characters with 1 uppercase and 1 lowercase letter</Description>
-              <FieldError />
-            </TextField>
-
-            <Button
-              type="submit"
-              className="w-full rounded-xl bg-blue-500 py-3 font-bold text-black hover:bg-blue-600"
-            >
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="rounded-3xl bg-white p-8 shadow-2xl">
+            <h2 className="mb-6 text-3xl font-bold">
               Login
-            </Button>
+            </h2>
 
-            <Button
-              onClick={handleGoogleSignIn}
-              variant="bordered"
-              className="w-full rounded-xl"
-            >
-              <FcGoogle className="text-xl" />
-              Sign in with Google
-            </Button>
+            <Form onSubmit={onSubmit} className="space-y-5">
 
-            <p className="text-center text-sm text-gray-500">
-              New to DriveHub?{" "}
-              <Link
-                href="/register"
-                className="font-semibold text-blue-600 hover:underline"
+              {/* email */}
+              <TextField
+                isRequired
+                name="email"
+                type="email"
+                validate={(value) => {
+                  if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
+                    return "Please enter a valid email address";
+                  }
+                  return null;
+                }}
               >
-                Register
-              </Link>
-            </p>
+                <Label>Email</Label>
+                <Input placeholder="Enter a valid email address" />
+                <FieldError />
+              </TextField>
 
-          </Form>
-        </div>
+              {/* password */}
+              <TextField
+                isRequired
+                minLength={6}
+                name="password"
+                type="password"
+                validate={(value) => {
+                  if (value.length < 6) {
+                    return "Password must be at least 6 characters";
+                  }
+                  if (!/[A-Z]/.test(value)) {
+                    return "Password must contain at least one uppercase letter";
+                  }
+                  if (!/[a-z]/.test(value)) {
+                    return "Password must contain at least one lowercase letter";
+                  }
+                  return null;
+                }}
+              >
+                <Label>Password</Label>
+                <Input placeholder="Enter your password" />
+                <Description>Must be at least 6 characters with 1 uppercase and 1 lowercase letter</Description>
+                <FieldError />
+              </TextField>
+
+              <Button
+                type="submit"
+                className="w-full rounded-xl bg-blue-500 py-3 font-bold text-black hover:bg-blue-600"
+              >
+                Login
+              </Button>
+
+              <Button
+                onClick={handleGoogleSignIn}
+                variant="bordered"
+                className="w-full rounded-xl"
+              >
+                <FcGoogle className="text-xl" />
+                Sign in with Google
+              </Button>
+
+              <p className="text-center text-sm text-gray-500">
+                New to DriveHub?{" "}
+                <Link
+                  href="/register"
+                  className="font-semibold text-blue-600 hover:underline"
+                >
+                  Register
+                </Link>
+              </p>
+
+            </Form>
+          </div>
+          </motion.div>
 
       </div>
     </div>

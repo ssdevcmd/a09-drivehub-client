@@ -1,17 +1,11 @@
 "use client";
 
 import { authClient } from "@/lib/auth-client";
-import {
-  Button,
-  Card,
-  DateField,
-  Label,
-  Modal,
-} from "@heroui/react";
-import { Rocket } from "lucide-react";
+import { Button, Card, DateField, Label, Modal } from "@heroui/react";
 import { redirect } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { motion } from "framer-motion";
 
 
 const BookingCard = ({ car }) => {
@@ -91,92 +85,97 @@ const BookingCard = ({ car }) => {
   };
 
   return (
-    <Card className="space-y-5 rounded-none border p-6 shadow-lg">
-      <div>
-        <p className="text-sm text-gray-500">Starting from</p>
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+    >
+      <Card className="space-y-5 rounded-none border p-6 shadow-lg">
+        <div>
+          <p className="text-sm text-gray-500">Starting from</p>
 
-        <h2 className="text-4xl font-bold text-blue-500">
-          ${dailyRentalPrice}
-        </h2>
+          <h2 className="text-4xl font-bold text-blue-500">
+            ${dailyRentalPrice}
+          </h2>
 
-        <p className="text-sm text-gray-500">Per Day</p>
-      </div>
+          <p className="text-sm text-gray-500">Per Day</p>
+        </div>
 
-      <DateField
-        value={bookingDate}
-        onChange={setBookingDate}
-        className="w-full"
-        name="bookingDate"
-      >
-        <Label>Booking Date</Label>
+        <DateField
+          value={bookingDate}
+          onChange={setBookingDate}
+          className="w-full"
+          name="bookingDate"
+        >
+          <Label>Booking Date</Label>
 
-        <DateField.Group>
-          <DateField.Input>
-            {(segment) => (
-              <DateField.Segment segment={segment} />
-            )}
-          </DateField.Input>
-        </DateField.Group>
-      </DateField>
+          <DateField.Group>
+            <DateField.Input>
+              {(segment) => (
+                <DateField.Segment segment={segment} />
+              )}
+            </DateField.Input>
+          </DateField.Group>
+        </DateField>
 
 
-      <Modal>
-        <Button
-          variant="secondary"
-          className="w-full rounded-none bg-blue-600 text-white hover:bg-blue-700"
-        >Book Now</Button>
-        <Modal.Backdrop>
-          <Modal.Container>
-            <Modal.Dialog className="sm:max-w-[360px]">
-              <Modal.CloseTrigger />
-              <Modal.Header>
-                
-                <Modal.Heading className="text-2xl font-bold">{carModel}</Modal.Heading>
-              </Modal.Header>
-              <Modal.Body>
-                <div>
-                  <Label htmlFor="driverNeeded">Driver Needed</Label>
+        <Modal>
+          <Button
+            variant="secondary"
+            className="w-full rounded-none bg-blue-600 text-white hover:bg-blue-700"
+          >Book Now</Button>
+          <Modal.Backdrop>
+            <Modal.Container>
+              <Modal.Dialog className="sm:max-w-[360px]">
+                <Modal.CloseTrigger />
+                <Modal.Header>
 
-                  <select
-                    id="driverNeeded"
-                    value={driverNeeded}
-                    onChange={(e) => setDriverNeeded(e.target.value)}
-                    className="mt-2 w-full rounded-lg border border-gray-300 p-3 focus:border-blue-500 focus:outline-none"
-                  >
-                    <option value="">Select an option</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                  </select>
-                </div>
-              
+                  <Modal.Heading className="text-2xl font-bold">{carModel}</Modal.Heading>
+                </Modal.Header>
+                <Modal.Body>
+                  <div>
+                    <Label htmlFor="driverNeeded">Driver Needed</Label>
 
-              <div>
-                <Label>Special Note</Label>
+                    <select
+                      id="driverNeeded"
+                      value={driverNeeded}
+                      onChange={(e) => setDriverNeeded(e.target.value)}
+                      className="mt-2 w-full rounded-lg border border-gray-300 p-3 focus:border-blue-500 focus:outline-none"
+                    >
+                      <option value="">Select an option</option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                  </div>
 
-                <textarea
-                  value={specialNote}
-                  onChange={(e) => setSpecialNote(e.target.value)}
-                  placeholder="Any special requirements..."
-                  className="mt-2 w-full rounded-md border p-3"
-                  rows={4}
-                />
-              </div>
-            </Modal.Body>
 
-            <Modal.Footer>
-              <Button
-              onClick={handleBooking} 
-              className="w-full rounded-none bg-blue-600 text-white hover:bg-blue-700" slot="close">
-                Book Now
-              </Button>
-            </Modal.Footer>
-          </Modal.Dialog>
-        </Modal.Container>
-      </Modal.Backdrop>
-    </Modal>
+                  <div>
+                    <Label>Special Note</Label>
 
-    </Card >
-  );
+                    <textarea
+                      value={specialNote}
+                      onChange={(e) => setSpecialNote(e.target.value)}
+                      placeholder="Any special requirements..."
+                      className="mt-2 w-full rounded-md border p-3"
+                      rows={4}
+                    />
+                  </div>
+                </Modal.Body>
+
+                <Modal.Footer>
+                  <Button
+                    onClick={handleBooking}
+                    className="w-full rounded-none bg-blue-600 text-white hover:bg-blue-700" slot="close">
+                    Book Now
+                  </Button>
+                </Modal.Footer>
+              </Modal.Dialog>
+            </Modal.Container>
+          </Modal.Backdrop>
+        </Modal>
+
+      </Card >
+      </motion.div>
+      );
 };
 
-export default BookingCard;
+      export default BookingCard;

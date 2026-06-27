@@ -7,6 +7,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
+import { motion } from "framer-motion";
 
 
 const RegisterPage = () => {
@@ -65,112 +66,118 @@ const RegisterPage = () => {
                 </div>
 
                 {/* Right Side */}
-                <Card className="rounded-3xl p-10 shadow-2xl">
-                    <div className="mb-8 text-center">
-                        <h2 className="text-4xl font-bold">
-                            Create Account
-                        </h2>
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5 }}
+                >
+                    <Card className="rounded-3xl p-10 shadow-2xl">
+                        <div className="mb-8 text-center">
+                            <h2 className="text-4xl font-bold">
+                                Create Account
+                            </h2>
 
-                        <p className="mt-2 text-gray-500">
-                            Join DriveHub and start your journey today.
-                        </p>
-                    </div>
+                            <p className="mt-2 text-gray-500">
+                                Join DriveHub and start your journey today.
+                            </p>
+                        </div>
 
-                    <Form onSubmit={onSubmit} className="space-y-5">
+                        <Form onSubmit={onSubmit} className="space-y-5">
 
-                        {/* Name */}
-                        <TextField
-                            name="name"
-                            type="text"
-                            isRequired>
-                            <Label>Name</Label>
-                            <Input placeholder="Enter your name" />
-                            <FieldError />
-                        </TextField>
+                            {/* Name */}
+                            <TextField
+                                name="name"
+                                type="text"
+                                isRequired>
+                                <Label>Name</Label>
+                                <Input placeholder="Enter your name" />
+                                <FieldError />
+                            </TextField>
 
-                        {/* Image */}
-                        <TextField name="image">
-                            <Label>Image URL</Label>
-                            <Input placeholder="Enter a valid image url" />
-                            <FieldError />
-                        </TextField>
+                            {/* Image */}
+                            <TextField name="image">
+                                <Label>Image URL</Label>
+                                <Input placeholder="Enter a valid image url" />
+                                <FieldError />
+                            </TextField>
 
-                        {/* email */}
-                        <TextField
-                            isRequired
-                            name="email"
-                            type="email"
-                            validate={(value) => {
-                                if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
-                                    return "Please enter a valid email address";
-                                }
-                                return null;
-                            }}
-                        >
-                            <Label>Email</Label>
-                            <Input placeholder="Enter a valid email address" />
-                            <FieldError />
-                        </TextField>
+                            {/* email */}
+                            <TextField
+                                isRequired
+                                name="email"
+                                type="email"
+                                validate={(value) => {
+                                    if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
+                                        return "Please enter a valid email address";
+                                    }
+                                    return null;
+                                }}
+                            >
+                                <Label>Email</Label>
+                                <Input placeholder="Enter a valid email address" />
+                                <FieldError />
+                            </TextField>
 
-                        {/* password */}
-                        <TextField
-                            isRequired
-                            minLength={6}
-                            name="password"
-                            type="password"
-                            validate={(value) => {
-                                if (value.length < 6) {
-                                    return "Password must be at least 6 characters";
-                                }
-                                if (!/[A-Z]/.test(value)) {
-                                    return "Password must contain at least one uppercase letter";
-                                }
-                                if (!/[a-z]/.test(value)) {
-                                    return "Password must contain at least one lowercase letter";
-                                }
-                                return null;
-                            }}
-                        >
-                            <Label>Password</Label>
-                            <Input placeholder="Enter your password" />
-                            <Description>Must be at least 6 characters with 1 uppercase and 1 lowercase letter</Description>
-                            <FieldError />
-                        </TextField>
+                            {/* password */}
+                            <TextField
+                                isRequired
+                                minLength={6}
+                                name="password"
+                                type="password"
+                                validate={(value) => {
+                                    if (value.length < 6) {
+                                        return "Password must be at least 6 characters";
+                                    }
+                                    if (!/[A-Z]/.test(value)) {
+                                        return "Password must contain at least one uppercase letter";
+                                    }
+                                    if (!/[a-z]/.test(value)) {
+                                        return "Password must contain at least one lowercase letter";
+                                    }
+                                    return null;
+                                }}
+                            >
+                                <Label>Password</Label>
+                                <Input placeholder="Enter your password" />
+                                <Description>Must be at least 6 characters with 1 uppercase and 1 lowercase letter</Description>
+                                <FieldError />
+                            </TextField>
+                            <Button
+                                type="submit"
+                                className="w-full rounded-xl bg-blue-500 py-3 font-bold text-black hover:bg-blue-600"
+                            >
+                                Create Account
+                            </Button>
+                        </Form>
+
+                        <div className=" flex items-center gap-3">
+                            <Separator className="flex-1" />
+                            <span className="text-sm text-gray-400">
+                                OR
+                            </span>
+                            <Separator className="flex-1" />
+                        </div>
+
                         <Button
-                            type="submit"
-                            className="w-full rounded-xl bg-blue-500 py-3 font-bold text-black hover:bg-blue-600"
+                            onClick={handleGoogleSignIn}
+                            variant="bordered"
+                            className="w-full rounded-xl"
                         >
-                            Create Account
+                            <FcGoogle className="text-xl" />
+                            Continue with Google
                         </Button>
-                    </Form>
 
-                    <div className=" flex items-center gap-3">
-                        <Separator className="flex-1" />
-                        <span className="text-sm text-gray-400">
-                            OR
-                        </span>
-                        <Separator className="flex-1" />
-                    </div>
-
-                    <Button
-                        onClick={handleGoogleSignIn}
-                        variant="bordered"
-                        className="w-full rounded-xl"
-                    >
-                        <FcGoogle className="text-xl" />
-                        Continue with Google
-                    </Button>
-
-                    <p className="mt-4 text-center text-sm text-gray-500">
-                        Already have an account?{" "}
-                        <Link
-                            href="/login"
-                            className="font-semibold text-blue-600 hover:underline"
-                        >
-                            Login
-                        </Link>
-                    </p>
-                </Card>
+                        <p className="mt-4 text-center text-sm text-gray-500">
+                            Already have an account?{" "}
+                            <Link
+                                href="/login"
+                                className="font-semibold text-blue-600 hover:underline"
+                            >
+                                Login
+                            </Link>
+                        </p>
+                    </Card>
+                    </motion.div>
 
             </div>
         </div>
