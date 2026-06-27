@@ -15,12 +15,13 @@ const CarDetailsPage = async ({ params }) => {
 
   console.log(token);
 
-  const res = await fetch(`http://localhost:5000/explore-cars/${id}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/explore-cars/${id}`, {
     headers: {
       authorization: `Bearer ${token}`
     }
   });
   const car = await res.json();
+  console.log(process.env.NEXT_PUBLIC_SERVER_URL);
 
   return (
     <div className="mx-auto max-w-7xl px-6 py-12">

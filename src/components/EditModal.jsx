@@ -26,7 +26,7 @@ const EditModal = ({ car }) => {
 
     const { data:tokenData } = await authClient.token()
 
-    const res = await fetch(`http://localhost:5000/explore-cars/${_id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/explore-cars/${_id}`, {
             method: "PATCH",
             headers: {
                 'content-type': 'application/json',

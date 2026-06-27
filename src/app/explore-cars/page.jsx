@@ -5,7 +5,7 @@ import { FiSearch } from 'react-icons/fi';
 
 const ExploreCarsPage = async ({ searchParams }) => {
     const { search = "", type = "All" } = await searchParams
-    const res = await fetch(`http://localhost:5000/explore-cars?search=${search}&type=${type}`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/explore-cars?search=${search}&type=${type}`);
 
     const cars = await res.json();
     // console.log('cars:....',cars);

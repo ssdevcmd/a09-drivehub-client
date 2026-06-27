@@ -21,7 +21,7 @@ const Navbar = () => {
   const handleLogout = async () => {
     await authClient.signOut();
     setProfileOpen(false);
-    redirect('/');
+    redirect('/login');
   };
 
   return (
