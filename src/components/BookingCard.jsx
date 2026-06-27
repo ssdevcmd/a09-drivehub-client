@@ -31,7 +31,6 @@ const BookingCard = ({ car }) => {
   const [bookingDate, setBookingDate] = useState(null);
   const [driverNeeded, setDriverNeeded] = useState("No");
   const [specialNote, setSpecialNote] = useState("");
-  // const [isOpen, setIsOpen] = useState(false);
   // console.log(new Date(bookingDate));
 
   const handleBooking = async () => {
@@ -63,11 +62,15 @@ const BookingCard = ({ car }) => {
       userImage: user?.image,
     };
 
+    const { data: tokenData } = await authClient.token()
+    console.log(tokenData);
+
     try {
       const res = await fetch("http://localhost:5000/booking", {
         method: "POST",
         headers: {
           "content-type": "application/json",
+          authorization: `Bearer ${tokenData?.token}`
         },
         body: JSON.stringify(bookingData),
       });

@@ -1,5 +1,7 @@
 import CarCard from '@/components/CarCard';
+import { Button } from '@heroui/react';
 import React from 'react';
+import { FiSearch } from 'react-icons/fi';
 
 const ExploreCarsPage = async ({ searchParams }) => {
     const { search = "", type = "All" } = await searchParams
@@ -8,22 +10,25 @@ const ExploreCarsPage = async ({ searchParams }) => {
     const cars = await res.json();
     // console.log('cars:....',cars);
     return (
-        <div>
-            <div className='flex justify-between m-10'>
+        <div className='pb-10'>
+            <div className='flex justify-between items-center my-10'>
                 <h1 className='text-5xl font-bold'>All cars</h1>
-                <form className="flex gap-4">
-                    <input
-                        type="text"
-                        name="search"
-                        placeholder="Search car..."
-                        defaultValue={search}
-                        className="w-full rounded-lg border p-3"
-                    />
+                <form className="flex flex-col gap-3 sm:flex-row sm:items-center">
+                    <div className='relative w-full sm:w-56'>
+                        <FiSearch className='absolute left-2 top-1/2 -translate-y-1/2 text-gray-400' />
+                        <input
+                            type="text"
+                            name="search"
+                            placeholder="Search car..."
+                            defaultValue={search}
+                            className="w-full rounded-lg border pl-10 pr-3 py-2 text-sm"
+                        />
+                    </div>
 
                     <select
                         name="type"
                         defaultValue={type}
-                        className="rounded-lg border p-3"
+                        className="w-full rounded-lg border px-3 py-2 text-sm sm:w-40"
                     >
                         <option value="All">All Types</option>
                         <option value="SUV">SUV</option>
@@ -34,12 +39,12 @@ const ExploreCarsPage = async ({ searchParams }) => {
                         <option value="Van">Van</option>
                     </select>
 
-                    <button
+                    <Button
                         type="submit"
-                        className="rounded-lg bg-blue-600 px-6 text-white"
+                        className="w-full rounded-lg bg-blue-600 px-5 py-2 text-white sm:w-auto"
                     >
                         Search
-                    </button>
+                    </Button>
                 </form>
             </div>
 

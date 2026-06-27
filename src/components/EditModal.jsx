@@ -3,6 +3,7 @@
 import React from "react";
 import { Button, FieldError, Input, Label, Modal, TextArea, TextField } from "@heroui/react";
 import { FaRegEdit } from "react-icons/fa";
+import { authClient } from "@/lib/auth-client";
 
 const EditModal = ({ car }) => {
   const {
@@ -23,10 +24,13 @@ const EditModal = ({ car }) => {
 
     console.log(updatedCar);
 
+    const { data:tokenData } = await authClient.token()
+
     const res = await fetch(`http://localhost:5000/explore-cars/${_id}`, {
             method: "PATCH",
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `Bearer ${tokenData?.token}`
             },
             body: JSON.stringify(updatedCar)
         });

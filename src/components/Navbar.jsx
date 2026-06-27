@@ -10,6 +10,7 @@ import { FaBars, FaTimes, FaHome, FaCar, FaPlusCircle, FaCalendarCheck, FaUserCi
 import { RiFileSearchFill } from "react-icons/ri";
 import { GiArchiveRegister } from "react-icons/gi";
 import { BiLogOut } from "react-icons/bi";
+import { redirect } from "next/navigation";
 
 const Navbar = () => {
   const { data: session } = authClient.useSession();
@@ -21,6 +22,7 @@ const Navbar = () => {
   const handleLogout = async () => {
     await authClient.signOut();
     setProfileOpen(false);
+    redirect('/');
   };
 
   return (
@@ -33,15 +35,9 @@ const Navbar = () => {
             <LuCarFront size={24} />
           </div>
 
-          <div className="flex flex-col">
-            <h1 className="text-2xl font-bold">
-              Drive<span className="text-blue-600">Hub</span>
-            </h1>
-
-            <p className="text-sm text-gray-500">
-              Rental Club
-            </p>
-          </div>
+          <h1 className="text-2xl font-bold">
+            Drive<span className="text-blue-600">Hub</span>
+          </h1>
         </Link>
 
         {/* Desktop Navigation */}
@@ -69,6 +65,14 @@ const Navbar = () => {
           >
             <FaPlusCircle />
             Add Car
+          </Link>
+
+          <Link
+            href="/my-bookings"
+            className="flex items-center gap-2 hover:text-blue-600 transition"
+          >
+            <FaCalendarCheck />
+            My Bookings
           </Link>
 
         </nav>

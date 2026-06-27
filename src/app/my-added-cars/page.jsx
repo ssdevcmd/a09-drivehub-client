@@ -11,8 +11,16 @@ const MyAddedCarsPage = async ({ car }) => {
 
     const user = session?.user;
 
+    const { token } = await auth.api.getToken({
+        headers: await headers()
+    })
+
     const res = await fetch(
-        `http://localhost:5000/my-added-cars/${user.id}`,
+        `http://localhost:5000/my-added-cars/${user.id}`, {
+            headers: {
+                authorization: `Bearer ${token}`
+            }
+        }
     );
 
     const cars = await res.json();

@@ -2,6 +2,7 @@ import { Button } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { FaGasPump, FaMapMarkerAlt, FaUsers } from "react-icons/fa";
 
 const CarCard = ({ car }) => {
     const { _id, carModel, brand, carType, dailyRentalPrice, image, location, fuelType, seats, availability } = car;
@@ -28,21 +29,27 @@ const CarCard = ({ car }) => {
                 <p className="mt-2 text-gray-500">{brand}</p>
 
                 <div className="mt-5 space-y-2 text-sm text-gray-600">
-                    <p>
-                        📍 <span className="font-medium">{location}</span>
-                    </p>
+                    <div className="flex items-center gap-3">
+                        <FaMapMarkerAlt className="text-red-600" />
+                        <p className="font-semibold">{location}</p>
 
-                    <p>
-                        ⛽ Fuel: <span className="font-medium">{fuelType}</span>
-                    </p>
+                    </div>
 
-                    <p>
-                        👥 Seats: <span className="font-medium">{seats}</span>
-                    </p>
+                    <div className="flex items-center gap-3">
+                        <FaGasPump className="text-red-600" />
+                        <p className="font-semibold">{fuelType}</p>
+
+                    </div>
+
+                    <div className="flex items-center gap-3">
+                        <FaUsers className="text-red-600" />
+                            <p className="font-semibold">{seats}</p>
+                       
+                    </div>
 
                     <p>
                         Availability: <span
-                        className="font-medium">{availability}</span>
+                            className="font-medium">{availability}</span>
                     </p>
                 </div>
 
@@ -55,9 +62,9 @@ const CarCard = ({ car }) => {
                     </div>
 
                     <Link href={`/explore-cars/${_id}`}>
-                    <Button className="rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white transition hover:bg-blue-700">
-                    View Details
-                    </Button>
+                        <Button className="rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white transition hover:bg-blue-700">
+                            View Details
+                        </Button>
                     </Link>
                 </div>
             </div>
