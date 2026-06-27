@@ -28,8 +28,8 @@ const CarDetailsPage = async ({ params }) => {
         {/* LEFT SIDE */}
         <div className="overflow-hidden rounded-3xl border bg-white shadow-xl">
           <Image
-            src={car.image}
-            alt={car.carModel}
+            src={car?.image}
+            alt={car?.carModel}
             width={700}
             height={500}
             className="h-[500px] w-full object-cover"
@@ -42,7 +42,7 @@ const CarDetailsPage = async ({ params }) => {
             </h3>
 
             <p className="text-gray-600">
-              {car.description}
+              {car?.description}
             </p>
           </div>
         </div>
@@ -68,26 +68,26 @@ const CarDetailsPage = async ({ params }) => {
 
           {/* Title */}
           <h1 className="text-4xl font-bold">
-            {car.brand} {car.carModel}
+            {car?.brand} {car?.carModel}
           </h1>
 
           {/* Type */}
           <span className="mt-4 inline-block rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-600">
-            {car.carType}
+            {car?.carType}
           </span>
 
           {/* Availability */}
           <div className="mt-6 flex items-center gap-2">
             <FaCheckCircle
               className={
-                car.availability === "Available"
+                car?.availability === "Available"
                   ? "text-green-500"
                   : "text-red-500"
               }
             />
 
             <span className="font-medium">
-              {car.availability}
+              {car?.availability}
             </span>
           </div>
 
@@ -99,8 +99,8 @@ const CarDetailsPage = async ({ params }) => {
 
           <div className="mt-4 flex items-center gap-2">
             <p className="rounded-full bg-green-100 px-3 py-1 text-sm font-semibold text-green-700">
-              {car.booking_count > 0
-                ? `${car.booking_count} ${car.booking_count === 1 ? "user has" : "users have"
+              {car?.booking_count > 0
+                ? `${car?.booking_count} ${car?.booking_count === 1 ? "user has" : "users have"
                 } booked this car`
                 : "No users have booked this car yet"}
             </p>
@@ -113,7 +113,7 @@ const CarDetailsPage = async ({ params }) => {
               <FaMapMarkerAlt className="text-blue-600" />
               <div>
                 <p className="text-sm text-gray-500">Location</p>
-                <p className="font-semibold">{car.location}</p>
+                <p className="font-semibold">{car?.location}</p>
               </div>
             </div>
 
@@ -121,7 +121,7 @@ const CarDetailsPage = async ({ params }) => {
               <FaGasPump className="text-blue-600" />
               <div>
                 <p className="text-sm text-gray-500">Fuel</p>
-                <p className="font-semibold">{car.fuelType}</p>
+                <p className="font-semibold">{car?.fuelType}</p>
               </div>
             </div>
 
@@ -129,7 +129,7 @@ const CarDetailsPage = async ({ params }) => {
               <FaUsers className="text-blue-600" />
               <div>
                 <p className="text-sm text-gray-500">Seats</p>
-                <p className="font-semibold">{car.seats}</p>
+                <p className="font-semibold">{car?.seats}</p>
               </div>
             </div>
 
@@ -137,7 +137,7 @@ const CarDetailsPage = async ({ params }) => {
               <FaCar className="text-blue-600" />
               <div>
                 <p className="text-sm text-gray-500">Type</p>
-                <p className="font-semibold">{car.carType}</p>
+                <p className="font-semibold">{car?.carType}</p>
               </div>
             </div>
 

@@ -174,8 +174,8 @@ const BookingCard = ({ car }) => {
         </Modal>
 
       </Card >
-      </motion.div>
-      );
+    </motion.div>
+  );
 };
 
-      export default BookingCard;
+export default BookingCard;
