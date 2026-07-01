@@ -42,5 +42,3 @@ DriveHub is a modern full-stack car rental platform where users can browse, book
 * framer-motion
 * react-icons
 * axios
-
-
