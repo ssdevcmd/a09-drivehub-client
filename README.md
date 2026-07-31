@@ -1,44 +1,82 @@
-# DriveHub
+# 🚗 DriveHub
 
-DriveHub is a modern full-stack car rental platform where users can browse, book, and manage rental cars with a secure authentication system and an intuitive user experience.
+## 📖 Overview
 
-## Live Website
+DriveHub is a modern car rental platform where users can browse available vehicles, view detailed information, book cars, and manage their bookings through a responsive and user-friendly interface.
 
-**Client:** https://drivehub-navy.vercel.app
+---
 
-## Features
+## 📸 Screenshot
 
-* Secure authentication with Email/Password and Google Sign-In using Better Auth.
-* Browse available rental cars with search and car type filtering.
-* Book cars online with booking history and booking count tracking.
-* Add, update, and delete car listings through a user-friendly dashboard.
-* Fully responsive design that works smoothly on desktop, tablet, and mobile devices.
-* Loading spinners, custom error pages, and 404 page for improved user experience.
-* Smooth animations using Framer Motion.
+![DriveHub Screenshot](./public/screenshot.png)
 
-## Technologies Used
+---
 
-### Frontend
+## 🚀 Live Demo
 
-* Next.js
-* React
-* Tailwind CSS
-* HeroUI
-* Framer Motion
-* Better Auth
+- 🌐 Live Site: https://your-drivehub-live.vercel.app
+- 💻 Repository: https://github.com/ssdevcmd/drivehub
 
-### Backend
+---
 
-* Node.js
-* Express.js
-* MongoDB
+## 🛠️ Technology Stack
 
-## NPM Packages
+- React
+- Tailwind CSS
+- DaisyUI
+- Node.js
+- Express.js
+- MongoDB
+- Firebase Authentication
 
-* @heroui/react
-* better-auth
-* mongodb
-* express
-* framer-motion
-* react-icons
-* axios
+---
+
+## ✨ Features
+
+- 🔐 User Authentication
+- 🚗 Browse Available Cars
+- 📅 Book & Manage Rentals
+- 🔍 Search and Filter Cars
+- 📱 Responsive Design
+- ⚡ Fast and Modern UI
+
+---
+
+## 📦 Dependencies
+
+- react
+- react-router-dom
+- axios
+- express
+- mongodb
+- cors
+- dotenv
+
+---
+
+## ⚙️ Run Locally
+
+```bash
+git clone https://github.com/ssdevcmd/drivehub.git
+
+cd drivehub
+
+npm install
+
+npm run dev
+```
+
+---
+
+## 🔗 Links
+
+- 🌐 Live Site: https://your-drivehub-live.vercel.app
+- 💻 Repository: https://github.com/ssdevcmd/drivehub
+
+---
+
+## 👨‍💻 Author
+
+**Solayman Sani**
+
+GitHub: https://github.com/ssdevcmd
