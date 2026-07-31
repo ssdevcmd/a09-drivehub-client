@@ -8,7 +8,7 @@ DriveHub is a modern car rental platform where users can browse available vehicl
 
 ## 📸 Screenshot
 
-![DriveHub Screenshot](./public/screenshot.png)
+![DriveHub Screenshot](./public/screenshot1.png)
 
 ---
 
