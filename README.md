@@ -14,7 +14,7 @@ DriveHub is a modern car rental platform where users can browse available vehicl
 
 ## 🚀 Live Demo
 
-- 🌐 Live Site: https://your-drivehub-live.vercel.app
+- 🌐 Live Site: https://drivehub-navy.vercel.app
 - 💻 Repository: https://github.com/ssdevcmd/drivehub
 
 ---
@@ -70,7 +70,7 @@ npm run dev
 
 ## 🔗 Links
 
-- 🌐 Live Site: https://your-drivehub-live.vercel.app
+- 🌐 Live Site: https://drivehub-navy.vercel.app
 - 💻 Repository: https://github.com/ssdevcmd/drivehub
 
 ---
