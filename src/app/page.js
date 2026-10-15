@@ -5,6 +5,7 @@ import WhyChooseUs from "@/components/WhyChoose";
 import HowItWorks from "@/components/HowItWorks";
 import Testimonials from "@/components/Testimonials";
 import FAQSection from "@/components/FAQSection";
+import CallToAction from "@/components/CallToAction";
 
 export default function Home() {
   return (
@@ -16,7 +17,7 @@ export default function Home() {
       <Statistics></Statistics>
       <Testimonials></Testimonials>
       <FAQSection></FAQSection>
-      
+      <CallToAction></CallToAction>
     </main>
   );
 }
