@@ -4,16 +4,19 @@ import Statistics from "@/components/Statistics";
 import WhyChooseUs from "@/components/WhyChoose";
 import HowItWorks from "@/components/HowItWorks";
 import Testimonials from "@/components/Testimonials";
+import FAQSection from "@/components/FAQSection";
 
 export default function Home() {
   return (
-    <div>
+    <main>
       <Banner></Banner>
       <AvailableCars></AvailableCars>
       <HowItWorks></HowItWorks>
       <WhyChooseUs></WhyChooseUs>
-      <Testimonials></Testimonials>
       <Statistics></Statistics>
-    </div>
+      <Testimonials></Testimonials>
+      <FAQSection></FAQSection>
+      
+    </main>
   );
 }
